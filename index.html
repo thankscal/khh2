@@ -25,12 +25,14 @@
             display: flex;
             flex-direction: column;
         }
-        .time-label { font-size: 12px; opacity: 0.8; margin-bottom: 5px; }
-        .time-value { font-size: 14px; font-weight: bold; color: #3498db; word-break: break-word; }
-        
-        /* 天氣地震資訊專區樣式 */
-        .weather-section { background: linear-gradient(135deg, #27ae60, #229954); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .weather-section h2 { font-size: 20px; margin-bottom: 10px; text-align: center; color: #ecf0f1; }
+        /* 時間專區文字放大 + 粗體 */
+        .time-label { font-size: 14px; font-weight: bold; opacity: 0.95; margin-bottom: 5px; }
+        .time-value { font-size: 16px; font-weight: bold; color: #3498db; word-break: break-word; }
+        /* 時間專區內的表單控制項維持原本大小，避免手機版變形 */
+        .time-value input[type="date"],
+        .time-value input[type="number"] {
+            font-size: 14px;
+        }
         
         .header { background: linear-gradient(135deg, #1a5fb4, #0d3b66); color: white; padding: 20px; text-align: center; }
         .header h1 { font-size: 26px; margin-bottom: 5px; }
@@ -110,6 +112,7 @@
             font-size: 12px;
             opacity: 0.9;
             white-space: nowrap;
+            font-weight: normal;
         }
         .time-calc-input {
             background: rgba(255,255,255,0.2);
@@ -162,6 +165,9 @@
             .header { padding: 15px; } 
             .header h1 { font-size: 22px; }
             .time-grid { grid-template-columns: 1fr; }
+            /* 手機版字體稍微收斂，避免變形 */
+            .time-label { font-size: 13px; }
+            .time-value { font-size: 15px; }
             .table-container {
                 padding: 0;
                 overflow-x: scroll;
@@ -340,7 +346,7 @@
                     <div class="time-value" id="180-days">載入中...</div>
                 </div>
                 <div class="time-item">
-                    <div class="time-label">CAT III AUTOLAND (28天後)</div>
+                    <div class="time-label">CAT III AUTOLAND (今天開始算28天後的日期)</div>
                     <div class="time-value" id="cat-iii-autoland">載入中...</div>
                 </div>
                 <div class="time-item">
@@ -366,7 +372,6 @@
                                     <input type="number" id="days-offset" value="0" min="0" max="365" step="1" style="width: 70px; padding: 3px; border-radius: 3px; border: 1px solid #ccc;">
                                     <span class="days-label">天</span>
                                 </div>
-                                <!-- 保留按鈕但改為輔助風格，使用者仍可按，但自動計算為主 -->
                                 <button id="calc-date-btn" style="padding: 3px 8px; background-color: #3498db; color: white; border: none; border-radius: 3px; font-size: 12px; cursor: pointer; flex: 1;">計算</button>
                             </div>
                             <div id="custom-date-result" class="date-calculator-result">結果將顯示在這裡</div>
@@ -401,25 +406,6 @@
                             <div id="time-calc-result" class="result-time">等待計算...</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 天氣與地震資訊專區 -->
-        <div class="weather-section">
-            <h2>天氣與地震資訊</h2>
-            <div class="time-grid">
-                <div class="time-item" style="align-items: center; justify-content: center; cursor: pointer;" onclick="window.open('https://www.cwa.gov.tw/V8/C/L/Airport/Airport.html?PID=Q002', '_blank');">
-                    <div style="font-size: 28px; margin-bottom: 8px;">🛫</div>
-                    <div class="time-label">小港機場天氣</div>
-                    <div class="time-value" id="current-weather">載入中...</div>
-                    <div style="font-size: 12px; margin-top: 5px; color: #a9dfbf;">點擊查看詳細機場天氣預報</div>
-                </div>
-                <div class="time-item" style="align-items: center; justify-content: center; cursor: pointer;" onclick="window.open('https://www.cwa.gov.tw/V8/C/E/index.html', '_blank');">
-                    <div style="font-size: 28px; margin-bottom: 8px;">🌍</div>
-                    <div class="time-label">最近地震報告</div>
-                    <div class="time-value">中央氣象署</div>
-                    <div style="font-size: 12px; margin-top: 5px; color: #a9dfbf;">點擊查看即時地震資訊</div>
                 </div>
             </div>
         </div>
@@ -636,7 +622,7 @@
             </table>
         </div>
         
-        <!-- 工具連結區域 (所有 calmmkhhcch 已改為 thankscal) -->
+        <!-- 工具連結區域 -->
         <div style="background: #f0f7ff; padding: 20px; margin: 20px; border-radius: 10px;">
             <h3 style="color: #1a5fb4; margin-bottom: 15px; font-size: 18px;">實用工具連結</h3>
             <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #1a5fb4;">
@@ -685,35 +671,83 @@
             </div>
             
             
-            <!-- 華航專區 (不變) -->
+            <!-- 華航專區 (更新版) -->
             <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #1a5fb4;">
                 <h3 style="color: #cc0000; margin-bottom: 15px; font-size: 18px;">華航專區</h3>
+
+                <!-- 技術員用 -->
+                <h4 style="color: #1a5fb4; margin: 18px 0 10px; font-size: 16px; border-bottom: 1px solid #d0d7de; padding-bottom: 5px;">技術員用</h4>
                 <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>EIP 華航首頁：</strong> <a href="https://eip.china-airlines.com/lportal/web/home/" target="_blank">https://eip.china-airlines.com/lportal/web/home/</a>
+                    <strong>EIP 華航首頁：</strong> <a href="https://eip.china-airlines.com/eip" target="_blank">https://eip.china-airlines.com/eip</a>
                 </div>
                 <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>加班單申請：</strong> <a href="https://tpeehr05.china-airlines.com/overtime/OTSheetIndex.aspx" target="_blank">https://tpeehr05.china-airlines.com/overtime/OTSheetIndex.aspx</a>
+                    <strong>國內(含外派)員工差勤系統 (TPEIA)：</strong> <a href="https://eam.china-airlines.com/nav/home" target="_blank">https://eam.china-airlines.com/nav/home</a>
                 </div>
                 <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>EAM 差勤：</strong> <a href="https://eam.china-airlines.com/" target="_blank">https://eam.china-airlines.com/</a>
-                </div>
-                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>ROS：</strong> <a href="https://rosc.china-airlines.com/Fr_login.aspx" target="_blank">https://rosc.china-airlines.com/Fr_login.aspx</a>
-                </div>
-                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>TEAM +：</strong> <a href="https://eim.china-airlines.com/EIM/User/WallMain.aspx" target="_blank">https://eim.china-airlines.com/EIM/User/WallMain.aspx</a>
-                </div>
-                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>員工機票：</strong> <a href="https://calcfec.china-airlines.com/StaffTicketWeb/et_main.aspx" target="_blank">https://calcfec.china-airlines.com/StaffTicketWeb/et_main.aspx</a>
-                </div>
-                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>DBS 油單：</strong> <a href="https://hdqsocweb02.china-airlines.com/DBSweb/flt/brief/ofp" target="_blank">https://hdqsocweb02.china-airlines.com/DBSweb/flt/brief/ofp</a>
-                   </div>
-                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
-                    <strong>網路電報查詢系統 Web TTY：</strong> <a href="https://webtty.china-airlines.com/login.xhtml" target="_blank">https://webtty.china-airlines.com/login.xhtml</a>  
+                    <strong>國內(含外派)員工加班申核系統(TPEIP)：</strong> <a href="https://tpeehr05.china-airlines.com/overtime/OTSheetIndex.aspx" target="_blank">https://tpeehr05.china-airlines.com/overtime/OTSheetIndex.aspx</a>
                 </div>
                 <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
                     <strong>ERP：</strong> <a href="https://maint.china-airlines.com/maintenix/common/security/login.jsp" target="_blank">https://maint.china-airlines.com/maintenix/common/security/login.jsp</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>TEAM +：</strong> <a href="https://eim.china-airlines.com/Airlines_SSO/Login.aspx" target="_blank">https://eim.china-airlines.com/Airlines_SSO/Login.aspx</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>機坪作業安全督察管理系統ROS (TPEQC)：</strong> <a href="https://rosc.china-airlines.com/Fr_login.aspx" target="_blank">https://rosc.china-airlines.com/Fr_login.aspx</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>電子郵件系統Outlook (TPECO)：</strong> <a href="https://outlook.office365.com/mail/?realm=china-airlines.com" target="_blank">https://outlook.office365.com/mail/?realm=china-airlines.com</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>E-learning (TPEID)：</strong> <a href="https://elearning.china-airlines.com/RWD/?rn=87437528#/System/Home" target="_blank">https://elearning.china-airlines.com/RWD/?rn=87437528#/System/Home</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>機票專區：</strong> <a href="https://eip.china-airlines.com/eip/page/ticket" target="_blank">https://eip.china-airlines.com/eip/page/ticket</a>
+                </div>
+
+                <!-- 領班/領工 用 -->
+                <h4 style="color: #1a5fb4; margin: 18px 0 10px; font-size: 16px; border-bottom: 1px solid #d0d7de; padding-bottom: 5px;">領班 / 領工 用</h4>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>考核暨獎懲報告系統(TPETA)：</strong> <a href="https://hdqpes.china-airlines.com/pes/PRUNReport" target="_blank">https://hdqpes.china-airlines.com/pes/PRUNReport</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>簽派簡報系統 DBS油單 (TPEOD)：</strong> <a href="https://hdqsocweb02.china-airlines.com/DBSweb/" target="_blank">https://hdqsocweb02.china-airlines.com/DBSweb/</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>網路電報查詢系統 Web TTY (TPECD)：</strong> <a href="https://webtty.china-airlines.com/login.xhtml" target="_blank">https://webtty.china-airlines.com/login.xhtml</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>聯合管制資訊網 (TPEJC)：</strong> <a href="https://hdqsocweb02.china-airlines.com/SOCweb/SOCwebPortal/NaviPortal" target="_blank">https://hdqsocweb02.china-airlines.com/SOCweb/SOCwebPortal/NaviPortal</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>文件管理應用平台DMS (TPETK)：</strong> <a href="https://dms.china-airlines.com/SRS/Login/Select_Language" target="_blank">https://dms.china-airlines.com/SRS/Login/Select_Language</a>
+                </div>
+
+                <!-- 隨機用 -->
+                <h4 style="color: #1a5fb4; margin: 18px 0 10px; font-size: 16px; border-bottom: 1px solid #d0d7de; padding-bottom: 5px;">隨機用</h4>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>外站機務布告欄(TPEM3)：</strong> <a href="https://emo.china-airlines.com/lsbs/" target="_blank">https://emo.china-airlines.com/lsbs/</a>
+                </div>
+
+                <!-- 通用區 -->
+                <h4 style="color: #1a5fb4; margin: 18px 0 10px; font-size: 16px; border-bottom: 1px solid #d0d7de; padding-bottom: 5px;">通用區</h4>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>內部招募系統 (TPEIA)：</strong> <a href="https://calcfec.china-airlines.com/PLWEB/Default.aspx" target="_blank">https://calcfec.china-airlines.com/PLWEB/Default.aspx</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>數位憑證管理系統PKI(TPECD)：</strong> <a href="https://calpki.china-airlines.com/RA/LoginByPass.jsp-" target="_blank">https://calpki.china-airlines.com/RA/LoginByPass.jsp-</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>差旅費結報系統(TPEIA)：</strong> <a href="https://tpeehr05.china-airlines.com/TEAS/FormQry.aspx" target="_blank">https://tpeehr05.china-airlines.com/TEAS/FormQry.aspx</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>電子電話簿(TPECE)：</strong> <a href="https://hdqeform.china-airlines.com/ETB/Data_maintain.aspx?dept_id=319C" target="_blank">https://hdqeform.china-airlines.com/ETB/Data_maintain.aspx?dept_id=319C</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>TMS(145)訓練管理系統 (TPEZG)：</strong> <a href="https://tms.china-airlines.com/CALlogin/login.html" target="_blank">https://tms.china-airlines.com/CALlogin/login.html</a>
+                </div>
+                <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #cc0000;">
+                    <strong>企業儲存雲 (TPECO)：</strong> <a href="https://calfile.china-airlines.com/webdisk/#/signin" target="_blank">https://calfile.china-airlines.com/webdisk/#/signin</a>
                 </div>
             </div>
         </div>
@@ -777,24 +811,16 @@
             daysOffsetInput.addEventListener('input', autoCalc);
             customDateInput.addEventListener('change', autoCalc);
             addBtn.addEventListener('click', () => {
-                // 切換 active 樣式原本就在 DOMContentLoaded 中處理，但需重新觸發計算
                 setTimeout(autoCalc, 10);
             });
             subtractBtn.addEventListener('click', () => {
                 setTimeout(autoCalc, 10);
             });
             manualCalcBtn.addEventListener('click', autoCalc);
-            // 初始執行一次
             autoCalc();
         }
         
-        function updateWeather() {
-            const cond = ['☀️ 晴朗','⛅ 多雲','🌧️ 短暫陣雨','☁️ 陰天'];
-            const temp = ['24°C / 20°C','28°C / 18°C','26°C / 18°C'];
-            document.getElementById('current-weather').innerHTML = `<strong>${cond[Math.floor(Math.random()*cond.length)]}</strong><br>${temp[Math.floor(Math.random()*temp.length)]}`;
-        }
-        
-        // 時間加減計算器邏輯 (不變)
+        // 時間加減計算器邏輯
         function initTimeCalculator() {
             const baseInput = document.getElementById('base-datetime');
             const hoursInput = document.getElementById('offset-hours');
@@ -881,22 +907,19 @@
             document.getElementById('custom-date-input').value = today;
             document.getElementById('input-date').addEventListener('change', calculateReverseDate);
             
-            // 加減按鈕 active 切換 (保留原本樣式切換)
+            // 加減按鈕 active 切換
             const opBtns = document.querySelectorAll('.operation-btn');
             opBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     opBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    // 切換後自動計算日期 (已在 bindAutoDateCalculation 中透過 setTimeout 觸發)
                 });
             });
             // 初始化自動計算綁定
             bindAutoDateCalculation();
             
-            updateWeather();
-            setInterval(updateWeather, 600000);
             initTimeCalculator();
         });
     </script>
 </body>
-                            </html>
+</html>
