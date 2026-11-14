@@ -8,70 +8,66 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Microsoft JhengHei', 'Segoe UI', sans-serif; line-height: 1.5; color: #333; background-color: #f0f4f8; padding: 15px; }
         .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); overflow: hidden; }
-        
+
         /* 時間專區樣式 */
         .time-section { background: linear-gradient(135deg, #2c3e50, #34495e); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .time-section h2 { font-size: 20px; margin-bottom: 10px; text-align: center; color: #ecf0f1; }
-        .time-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 10px; 
+        .time-section h2 { font-size: 20px; margin-bottom: 10px; text-align: center; color: #ecf0f1; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
         }
-        .time-item { 
-            background: rgba(255, 255, 255, 0.1); 
-            padding: 10px; 
-            border-radius: 5px; 
+        .time-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
             text-align: center;
             display: flex;
             flex-direction: column;
         }
-        /* 時間專區文字放大 + 粗體 */
         .time-label { font-size: 14px; font-weight: bold; opacity: 0.95; margin-bottom: 5px; }
         .time-value { font-size: 16px; font-weight: bold; color: #3498db; word-break: break-word; }
-        /* 時間專區內的表單控制項維持原本大小，避免手機版變形 */
         .time-value input[type="date"],
         .time-value input[type="number"] {
             font-size: 14px;
         }
-        
+
         .header { background: linear-gradient(135deg, #1a5fb4, #0d3b66); color: white; padding: 20px; text-align: center; }
         .header h1 { font-size: 26px; margin-bottom: 5px; }
         .header .subtitle { font-size: 14px; opacity: 0.9; }
-        .table-container { 
-            overflow-x: auto; 
+        .table-container {
+            overflow-x: auto;
             padding: 0 10px;
             position: relative;
         }
-        .comparison-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 1250px; 
-            font-size: 14px; 
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1250px;
+            font-size: 14px;
             position: relative;
         }
-        .comparison-table th { 
-            position: sticky; 
-            top: 0; 
-            z-index: 10; 
-            border-bottom: none; 
-            vertical-align: top; 
+        .comparison-table th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: none;
+            vertical-align: top;
         }
-        /* 左側固定表頭 */
-        .comparison-table th:first-child { 
-            position: sticky; 
+        .comparison-table th:first-child {
+            position: sticky;
             left: 0;
             z-index: 100;
-            background-color: #f0f7ff; 
+            background-color: #f0f7ff;
             width: 200px;
             border-right: 2px solid #f0f7ff !important;
         }
-        /* 左側固定內容格 */
-        .comparison-table td:first-child { 
-            position: sticky; 
+        .comparison-table td:first-child {
+            position: sticky;
             left: 0;
             z-index: 50;
             background-color: white;
-            font-weight: bold; 
+            font-weight: bold;
             color: #1a5fb4;
             width: 200px;
             border-right: 2px solid white !important;
@@ -79,10 +75,10 @@
         .comparison-table tbody td {
             border-bottom: 1px solid #e2e8f0;
         }
-        .comparison-table th, .comparison-table td { 
-            padding: 12px 8px; 
-            text-align: left; 
-            vertical-align: top; 
+        .comparison-table th, .comparison-table td {
+            padding: 12px 8px;
+            text-align: left;
+            vertical-align: top;
         }
         .airline-header { color: white; text-align: center; padding: 12px 5px; border-radius: 5px; min-height: 70px; display: flex; flex-direction: column; justify-content: center; }
         .airline-code { display: block; font-size: 12px; opacity: 0.9; margin-top: 3px; font-weight: normal; }
@@ -93,7 +89,7 @@
         .badge.airbus { background-color: #d1ecf1; color: #0c5460; }
         .badge.boeing { background-color: #f8d7da; color: #721c24; }
         .highlight-box { background-color: #fff9e6; border-left: 3px solid #ffc107; padding: 8px; margin-top: 5px; border-radius: 0 3px 3px 0; }
-        
+
         /* 時間加減計算器內部樣式 */
         .time-calc-control {
             display: flex;
@@ -160,12 +156,11 @@
             font-weight: bold;
             color: #f1c40f;
         }
-        @media (max-width: 768px) { 
-            .container { border-radius: 0; } 
-            .header { padding: 15px; } 
+        @media (max-width: 768px) {
+            .container { border-radius: 0; }
+            .header { padding: 15px; }
             .header h1 { font-size: 22px; }
             .time-grid { grid-template-columns: 1fr; }
-            /* 手機版字體稍微收斂，避免變形 */
             .time-label { font-size: 13px; }
             .time-value { font-size: 15px; }
             .table-container {
@@ -210,27 +205,27 @@
                 border-radius: 4px;
             }
         }
-        
+
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
             .comparison-table th:first-child,
             .comparison-table td:first-child {
                 transform: translateX(0.5px);
             }
         }
-        
+
         .date-calculator-container {
             display: flex;
             flex-direction: column;
             gap: 8px;
             margin-top: 5px;
         }
-        
+
         .date-calculator-row {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-        
+
         .date-calculator-row input[type="date"] {
             flex: 1;
             padding: 4px;
@@ -238,7 +233,7 @@
             border: 1px solid #ccc;
             font-size: 12px;
         }
-        
+
         .date-calculator-row input[type="number"] {
             width: 70px;
             padding: 4px;
@@ -247,13 +242,13 @@
             font-size: 12px;
             text-align: center;
         }
-        
+
         .date-calculator-row .days-label {
             font-size: 12px;
             color: #ecf0f1;
             white-space: nowrap;
         }
-        
+
         .date-calculator-result {
             margin-top: 5px;
             font-size: 13px;
@@ -261,13 +256,13 @@
             color: #2ecc71;
             min-height: 20px;
         }
-        
+
         .operation-buttons {
             display: flex;
             gap: 5px;
             margin-bottom: 5px;
         }
-        
+
         .operation-btn {
             flex: 1;
             padding: 6px 0;
@@ -279,31 +274,144 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        
+
         .operation-btn.active {
             background-color: #3498db;
             color: white;
             font-weight: bold;
             box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
         }
-        
+
         .operation-btn:hover {
             background-color: #3a506b;
         }
-        
+
         .operation-btn.active:hover {
             background-color: #2980b9;
         }
-        
+
         .days-input-container {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-        
+
         .kg-bold {
             color: #ff0000 !important;
             font-weight: bold !important;
+        }
+
+        /* ===== 快遲到按鈕 ===== */
+        .late-btn {
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,.3);
+            transition: background .2s, transform .1s;
+            white-space: nowrap;
+        }
+        .late-btn:hover { background: #e0a800; }
+        .late-btn:active { transform: scale(.96); }
+
+        /* ===== 快遲到模式（手機直立式最佳化） ===== */
+        .late-mode-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 100vh;
+            height: 100dvh;
+            background: #0b1320;
+            color: #fff;
+            z-index: 99999;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .late-mode-overlay.active { display: flex; }
+
+        /* 上方 60%：時間與倒數 */
+        .late-main {
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 6px;
+            text-align: center;
+            gap: 4px;
+        }
+
+        .late-label {
+            font-size: clamp(14px, 4vw, 24px);
+            letter-spacing: 3px;
+            opacity: .7;
+            font-weight: 600;
+        }
+
+        .late-target-label { margin-top: 16px; }
+
+        .late-clock {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', 'Helvetica Neue', Arial, sans-serif;
+            font-size: clamp(36px, 17vw, 140px);
+            font-weight: 900;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            letter-spacing: 0.01em;
+            line-height: 1;
+            white-space: nowrap;
+            color: #ecf0f1;
+            text-shadow: 0 2px 12px rgba(0,0,0,.4);
+        }
+
+        .late-countdown { color: #f1c40f; }
+
+        .late-ms {
+            font-size: 0.55em;
+            font-weight: 700;
+            opacity: 0.85;
+            margin-left: 0.02em;
+        }
+
+        /* 中間 10%：關閉按鈕 */
+        .late-close-area {
+            height: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .late-close-btn {
+            width: 80%;
+            max-width: 360px;
+            padding: 14px 0;
+            border-radius: 40px;
+            border: none;
+            background: #3498db;
+            color: #fff;
+            font-size: clamp(16px, 4.5vw, 24px);
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 3px;
+            box-shadow: 0 4px 14px rgba(52,152,219,.5);
+            transition: background .2s, transform .1s;
+        }
+        .late-close-btn:hover { background: #2980b9; }
+        .late-close-btn:active { transform: scale(.97); background: #2980b9; }
+
+        /* 下方 30%：空白 */
+        .late-blank-area {
+            height: 30%;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .time-section h2 { font-size: 18px; gap: 8px; }
+            .late-btn { font-size: 13px; padding: 5px 12px; }
         }
     </style>
 </head>
@@ -311,7 +419,7 @@
     <div class="container">
         <!-- 時間專區 -->
         <div class="time-section">
-            <h2>時間專區</h2>
+            <h2>時間專區 <button id="late-mode-btn" class="late-btn" type="button">快遲到</button></h2>
             <div class="time-grid">
                 <div class="time-item">
                     <div class="time-label">現在台灣時間</div>
@@ -409,7 +517,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="header">
             <h1>高雄機務作業對照表</h1>
             <div class="subtitle">各航空公司機務作業規範快速對照</div>
@@ -621,7 +729,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- 工具連結區域 -->
         <div style="background: #f0f7ff; padding: 20px; margin: 20px; border-radius: 10px;">
             <h3 style="color: #1a5fb4; margin-bottom: 15px; font-size: 18px;">實用工具連結</h3>
@@ -657,8 +765,12 @@
                 <strong>工具清點系統：</strong>
                 <a href="https://thankscal.github.io/toollist/" target="_blank">https://thankscal.github.io/toollist/</a>
             </div>
-            
-            
+            <div style="margin-bottom: 12px; padding: 12px 15px; background: white; border-radius: 5px; border-left: 4px solid #1a5fb4;">
+                <strong>國內補休差假結餘 計算器：</strong>
+                <a href="https://thankscal.github.io/comptimecal/" target="_blank">https://thankscal.github.io/comptimecal/</a>
+            </div>
+
+
             <!-- 華航專區 (更新版) -->
             <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #1a5fb4;">
                 <h3 style="color: #cc0000; margin-bottom: 15px; font-size: 18px;">華航專區</h3>
@@ -739,6 +851,29 @@
         </div>
     </div>
 
+    <!-- 快遲到模式全螢幕覆蓋層（手機直立式最佳化） -->
+    <div id="late-mode-overlay" class="late-mode-overlay">
+        <!-- 上方 60%：時間與倒數 -->
+        <div class="late-main">
+            <div class="late-label">現在時間</div>
+            <div class="late-clock">
+                <span id="late-cur-hms">00:00:00</span><span id="late-cur-ms" class="late-ms">.000</span>
+            </div>
+            <div class="late-label late-target-label">距離 <span id="late-target">05:00</span> 打卡還有</div>
+            <div class="late-clock late-countdown">
+                <span id="late-cd-hms">00:00:00</span><span id="late-cd-ms" class="late-ms">.000</span>
+            </div>
+        </div>
+
+        <!-- 中間 10%：關閉按鈕 -->
+        <div class="late-close-area">
+            <button id="late-mode-close" class="late-close-btn" type="button">關閉模式</button>
+        </div>
+
+        <!-- 下方 30%：空白 -->
+        <div class="late-blank-area"></div>
+    </div>
+
     <script>
         // 時間專區基礎功能
         function updateTime() {
@@ -766,16 +901,16 @@
             const wd = ['日','一','二','三','四','五','六'];
             document.getElementById('reverse-result').textContent = `${rev.toLocaleDateString('zh-TW')} (週${wd[rev.getDay()]})`;
         }
-        
+
         // 自訂日期加減計算 (核心函數)
         function performCustomDateCalculation() {
             const dateInput = document.getElementById('custom-date-input').value;
             const days = parseInt(document.getElementById('days-offset').value) || 0;
             const activeBtn = document.querySelector('.operation-btn.active');
             const operation = activeBtn ? activeBtn.getAttribute('data-operation') : 'add';
-            if(!dateInput) { 
+            if(!dateInput) {
                 document.getElementById('custom-date-result').innerHTML = "請選擇日期";
-                return; 
+                return;
             }
             const base = new Date(dateInput);
             const res = new Date(base);
@@ -784,7 +919,7 @@
             const wd = ['日','一','二','三','四','五','六'];
             document.getElementById('custom-date-result').innerHTML = `<div>${operation === 'add' ? '加' : '減'} ${days} 天後：</div><div style="font-size:14px; margin-top:3px;">${res.toLocaleDateString('zh-TW')} (週${wd[res.getDay()]})</div>`;
         }
-        
+
         // 監聽天數輸入、加減按鈕切換、日期變更 -> 自動計算
         function bindAutoDateCalculation() {
             const daysOffsetInput = document.getElementById('days-offset');
@@ -792,7 +927,7 @@
             const addBtn = document.getElementById('add-btn');
             const subtractBtn = document.getElementById('subtract-btn');
             const manualCalcBtn = document.getElementById('calc-date-btn');
-            
+
             const autoCalc = () => performCustomDateCalculation();
             daysOffsetInput.addEventListener('input', autoCalc);
             customDateInput.addEventListener('change', autoCalc);
@@ -805,7 +940,7 @@
             manualCalcBtn.addEventListener('click', autoCalc);
             autoCalc();
         }
-        
+
         // 時間加減計算器邏輯
         function initTimeCalculator() {
             const baseInput = document.getElementById('base-datetime');
@@ -814,7 +949,7 @@
             const resultDiv = document.getElementById('time-calc-result');
             const applyBtn = document.getElementById('apply-time-offset');
             const resetBtn = document.getElementById('reset-base-time');
-            
+
             function setNowToBase() {
                 const now = new Date();
                 const year = now.getFullYear();
@@ -825,7 +960,7 @@
                 baseInput.value = `${year}-${month}-${day}T${hours}:${minutes}`;
                 computeTimeOffset();
             }
-            
+
             function computeTimeOffset() {
                 let baseDate;
                 if (!baseInput.value) {
@@ -851,7 +986,7 @@
                 const minutes = String(resultDate.getMinutes()).padStart(2,'0');
                 resultDiv.innerHTML = `📅 ${year}/${month}/${day} (週${weekday}) ${hours24}:${minutes}<br><span style="font-size:11px;">基準 ${baseDate.toLocaleDateString()} ${baseDate.toLocaleTimeString()} 偏移 ${hourOffset}h ${minuteOffset}m</span>`;
             }
-            
+
             function quickAdjust(type, delta) {
                 if (type === 'hours') {
                     let val = parseInt(hoursInput.value) || 0;
@@ -862,13 +997,13 @@
                 }
                 computeTimeOffset();
             }
-            
+
             applyBtn.addEventListener('click', computeTimeOffset);
             resetBtn.addEventListener('click', () => { setNowToBase(); computeTimeOffset(); });
             hoursInput.addEventListener('input', computeTimeOffset);
             minutesInput.addEventListener('input', computeTimeOffset);
             baseInput.addEventListener('change', computeTimeOffset);
-            
+
             document.querySelectorAll('[data-quick-hours]').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const delta = parseInt(btn.getAttribute('data-quick-hours'));
@@ -883,7 +1018,77 @@
             });
             setNowToBase();
         }
-        
+
+        // ================= 快遲到模式 =================
+        let lateModeRAF = null;
+        let lateTarget = null;
+
+        function pad2(n) { return String(n).padStart(2, '0'); }
+        function pad3(n) { return String(n).padStart(3, '0'); }
+
+        // 計算「現在之後最近的整點或半點」
+        function computeNextTarget(now) {
+            const target = new Date(now.getTime());
+            target.setSeconds(0, 0);
+            if (now.getMinutes() < 30) {
+                target.setMinutes(30);
+            } else {
+                target.setHours(target.getHours() + 1);
+                target.setMinutes(0);
+            }
+            return target;
+        }
+
+        function updateLateMode() {
+            const now = new Date();
+
+            // 目標時間已過（或尚未設定）→ 重新計算下一個整點/半點
+            if (!lateTarget || now.getTime() >= lateTarget.getTime()) {
+                lateTarget = computeNextTarget(now);
+            }
+
+            // 目前時間：HH:MM:SS + 毫秒
+            document.getElementById('late-cur-hms').textContent =
+                `${pad2(now.getHours())}:${pad2(now.getMinutes())}:${pad2(now.getSeconds())}`;
+            document.getElementById('late-cur-ms').textContent =
+                `.${pad3(now.getMilliseconds())}`;
+
+            // 目標時間文字（HH:MM）
+            document.getElementById('late-target').textContent =
+                `${pad2(lateTarget.getHours())}:${pad2(lateTarget.getMinutes())}`;
+
+            // 倒數：HH:MM:SS + 毫秒
+            const diff = Math.max(0, lateTarget.getTime() - now.getTime());
+            const h = Math.floor(diff / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            const ms = diff % 1000;
+            document.getElementById('late-cd-hms').textContent =
+                `${pad2(h)}:${pad2(m)}:${pad2(s)}`;
+            document.getElementById('late-cd-ms').textContent =
+                `.${pad3(ms)}`;
+
+            lateModeRAF = requestAnimationFrame(updateLateMode);
+        }
+
+        function openLateMode() {
+            lateTarget = null;
+            document.getElementById('late-mode-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (lateModeRAF) cancelAnimationFrame(lateModeRAF);
+            updateLateMode();
+        }
+
+        function closeLateMode() {
+            document.getElementById('late-mode-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+            if (lateModeRAF) {
+                cancelAnimationFrame(lateModeRAF);
+                lateModeRAF = null;
+            }
+        }
+        // =============================================
+
         document.addEventListener('DOMContentLoaded', function() {
             updateTime();
             setInterval(updateTime, 1000);
@@ -892,7 +1097,7 @@
             calculateReverseDate();
             document.getElementById('custom-date-input').value = today;
             document.getElementById('input-date').addEventListener('change', calculateReverseDate);
-            
+
             // 加減按鈕 active 切換
             const opBtns = document.querySelectorAll('.operation-btn');
             opBtns.forEach(btn => {
@@ -903,9 +1108,18 @@
             });
             // 初始化自動計算綁定
             bindAutoDateCalculation();
-            
+
             initTimeCalculator();
+
+            // 快遲到模式事件綁定
+            document.getElementById('late-mode-btn').addEventListener('click', openLateMode);
+            document.getElementById('late-mode-close').addEventListener('click', closeLateMode);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && document.getElementById('late-mode-overlay').classList.contains('active')) {
+                    closeLateMode();
+                }
+            });
         });
     </script>
 </body>
-</html>
+    </html>
